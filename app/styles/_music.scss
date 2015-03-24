@@ -1,0 +1,170 @@
+.music-container {
+  .content {
+    flex-basis: 450px;
+    @media (max-height: 700px) { flex-basis: 350px; }
+    @media (max-height: 500px) { flex-basis: 250px; }
+    overflow: auto;
+  }
+
+  .header-middle {
+    flex-basis: 640px;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      height: 100%;
+      background: url(../images/punch-black.png);
+      background-position: 50%;
+      background-size: 100%;
+    }
+  }
+}
+
+.albums {
+  width: 850px;
+  margin: auto;
+
+  @media (max-width: 890px) {
+    width: 400px;
+    margin: auto;
+  }
+
+  &.opened-2 {
+    .album-1 {
+      @media (min-width: 891px) {
+        transform: translate3d(-200px, 0, 0);
+      }
+    }
+    .album-2 {
+      @media (min-width: 891px) {
+        transform: translate3d(-200px, 0, 0) rotateY(-180deg);
+      }
+      @media (max-width: 890px) {
+        transform: rotateY( -180deg );
+      }
+    }
+  }
+
+  &.opened-1 {
+    .album-2 {
+      @media (min-width: 891px) {
+        transform: translate3d(200px, 0, 0);
+      }
+    }
+    .album-1 {
+      @media (min-width: 891px) {
+        transform: translate3d(200px, 0, 0) rotateY(-180deg);
+      }
+      @media (max-width: 890px) {
+        transform: rotateY(-180deg);
+      }
+    }
+  }
+}
+
+.album {
+  width: 400px;
+  height: 400px;
+  background-color: #1B1B1B;
+  float: left;
+  margin: 30px 50px 0 0;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+  transition: all 1s;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  &:last-child {
+    @media (min-width: 891px) {
+      margin-right: 0;
+    }
+    @media (max-width: 890px) {
+      margin-bottom: 50px;
+    }
+  }
+
+  .__title {
+    font-family: Helvetica;
+    font-weight: 200;
+    font-size: 21px;
+    color: #E5BE7F;
+    line-height: 29px;
+    margin-top: 20px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .__song-list {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .__back,
+  .__front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .__back {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background-color: #1B1B1B;
+  }
+
+  .__front {
+    background: {
+      color: #1B1B1B;
+      repeat: no-repeat;
+      position: 30px 50%;
+    }
+  }
+
+
+  &.album-1 {
+    .__front {
+      background-image: url(../images/albums/album-1.png);
+    }
+  }
+  &.album-2 {
+    .__front {
+      background-image: url(../images/albums/album-2.png);
+    }
+  }
+}
+
+.song {
+  opacity: 0.3;
+  font-family: Helvetica;
+  font-size: 15px;
+  font-weight: 200;
+  // letter-spacing: 1px;
+  color: #FFFFFF;
+  line-height: 30px;
+}
+
+.social {
+  margin: auto;
+
+  a {
+    display: inline-block;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 150px;
+    height: 30px;
+    background: {
+      repeat: no-repeat;
+      position: 50%;
+    }
+  }
+
+  .__bandcamp { background-image: url(../images/social/bandcamp.png)};
+  .__facebook { background-image: url(../images/social/facebook.png)};
+  .__instagram { background-image: url(../images/social/instagram.png)};
+  .__youtube { background-image: url(../images/social/youtube.png)};
+  .__soundcloud { background-image: url(../images/social/soundcloud.png)};
+}
