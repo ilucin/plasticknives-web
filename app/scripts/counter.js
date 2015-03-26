@@ -1,6 +1,7 @@
 (function() {
   'use strict';
 
+  var timer;
   var spinnerDigits = '';
   for (var i = 0; i < 10; i++) {
     spinnerDigits += '<div class="digit-' + i + '"></div>';
@@ -30,9 +31,19 @@
     }
   }
 
+  function switchToMusic() {
+    window.clearInterval(timer);
+    $('.index-container').addClass('hidden');
+    $('.music-container').removeClass('hidden');
+  }
+
   function counterTick() {
     var d = Date.now();
     var ld = +launchDate;
+
+    if (d > ld) {
+      switchToMusic();
+    }
 
     var hours = parseInt((ld - d) / (3600000), 10);
     var minutes = parseInt((ld - d) / (60000), 10) - (hours * 60);
@@ -43,6 +54,6 @@
     setDigitsValue(seconds, $secondsDigit1, $secondsDigit2);
   }
 
-  window.setInterval(counterTick);
+  timer = window.setInterval(counterTick);
   counterTick();
 })();
