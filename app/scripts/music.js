@@ -3,13 +3,14 @@
 
   var $openedAlbum = null;
   var locked = false;
+  var animationEnabled = false;
 
   var $albums = $('.albums');
   // var $album1 = $('.album-1');
   // var $album2 = $('.album-2');
 
   $albums.on('click', '.album', function() {
-    if (locked) {
+    if (locked || !animationEnabled) {
       return;
     }
 

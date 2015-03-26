@@ -1,5 +1,10 @@
 $source-sans-pro: 'SourceSansPro';
 
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  user-select: none !important;
+}
+
 body {
   font-family: $source-sans-pro, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -57,6 +62,13 @@ body {
     background-color: #151515;
     height: 500px;
     flex: 1;
+  }
+
+  @media (max-width: 500px) {
+    max-height: 120px;
+  }
+  @media (max-height: 500px) {
+    max-height: 70px;
   }
 }
 
