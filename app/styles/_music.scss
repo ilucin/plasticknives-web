@@ -1,7 +1,7 @@
 .music-container {
   .content {
     flex-basis: 450px;
-    @media (max-height: 700px) { flex-basis: 330px; }
+    @media (max-height: 650px) { flex-basis: 330px; }
     @media (max-height: 500px) { flex-basis: 300px; }
     overflow: auto;
   }
@@ -23,7 +23,7 @@
 .albums {
   width: 850px;
   margin: auto;
-  @media (max-height: 650px) { width: 750px; }
+  @media (max-height: 650px) { width: 650px; }
   @media (max-width: 890px) { width: 400px; }
   @media (max-width: 500px) { width: 340px; }
   @media (max-width: 350px) { width: 300px; }
