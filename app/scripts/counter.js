@@ -8,7 +8,7 @@
 
   $('.digit-spinner').html(spinnerDigits);
 
-  var LAUNCH_ISO_DATE = '2015-03-27T00:00:00.000Z';
+  var LAUNCH_ISO_DATE = '2015-03-26T23:00:00.000Z';
   var launchDate = new Date(LAUNCH_ISO_DATE);
 
   var $hoursDigit1 = $('.hours .first-digit');
