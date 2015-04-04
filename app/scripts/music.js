@@ -1,13 +1,13 @@
-(function() {
+$(function() {
   'use strict';
 
   var $openedAlbum = null;
   var locked = false;
   var animationEnabled = true;
 
+  var $content = $('.content');
   var $albums = $('.albums');
   var $playbackControls = $('.playback-controls');
-  var $content = $('.content');
   var player = window.player;
   var $audio = $('audio');
 
@@ -29,14 +29,24 @@
   }
 
   function closeAlbum() {
+    var $album = $openedAlbum;
+    var is2 = $openedAlbum.hasClass('album-2');
     $openedAlbum.find('.__front').show();
     $albums.removeClass('opened opened-1 opened-2');
     resetSongs();
     $openedAlbum = null;
+
+    setTimeout(function() {
+      $album.siblings().removeClass('hidden-mobile');
+      if (is2) {
+        $content.scrollTop(1000);
+      }
+    }, 1000);
   }
 
   function openAlbum($album) {
     $albums.addClass('opened opened-' + $album.data('album-no'));
+    $album.siblings().addClass('hidden-mobile');
     $openedAlbum = $album;
     setSongs();
 
@@ -125,4 +135,4 @@
       locked = false;
     }, lockTime);
   });
-})();
+});
