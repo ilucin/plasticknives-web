@@ -1,4 +1,10 @@
-$bg: #B16697;
+$bg: #888;
+$body-color-0: #745E9D;
+$body-color-1: #7B1B40;
+$body-color-2: #5C2C96;
+$body-color-3: #5F3489;
+$body-color-4: #2E4064;
+$body-color-5: #B16697;
 
 .music-container {
   .content {
@@ -7,6 +13,10 @@ $bg: #B16697;
     @media (max-height: 500px) { flex-basis: 300px; }
     overflow: auto;
     transition: flex-basis 200ms;
+
+    @media (min-width: 891px) {
+      overflow: hidden;
+    }
 
     &.stretched {
       flex-basis: 500px;
@@ -33,15 +43,18 @@ audio {
 
 .close-button {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   width: 14px;
   height: 14px;
   cursor: pointer;
+  z-index: 1;
+  padding: 5px;
   background: {
     image: url(../images/icons/close.png);
     repeat: no-repeat;
-    size: 100%;
+    size: 14px;
+    position: 50%;
   }
 }
 
@@ -74,14 +87,26 @@ audio {
     .__circle {
       width: 48px;
       height: 48px;
-      border: 1px solid darken($bg, 30%);
       margin: auto;
       border-radius: 100%;
       cursor: pointer;
+      border: 1px solid #444;
+      .body-color-0 & { border: 1px solid $body-color-0; }
+      .body-color-1 & { border: 1px solid $body-color-1; }
+      .body-color-2 & { border: 1px solid $body-color-2; }
+      .body-color-3 & { border: 1px solid $body-color-3; }
+      .body-color-4 & { border: 1px solid $body-color-4; }
+      .body-color-5 & { border: 1px solid $body-color-5; }
 
       &:hover {
         .__control {
-          background-color: lighten($bg, 15%);
+          background-color: #888;
+          .body-color-0 & { background-color: lighten($body-color-0, 15%); }
+          .body-color-1 & { background-color: lighten($body-color-1, 15%); }
+          .body-color-2 & { background-color: lighten($body-color-2, 15%); }
+          .body-color-3 & { background-color: lighten($body-color-3, 15%); }
+          .body-color-4 & { background-color: lighten($body-color-4, 15%); }
+          .body-color-5 & { background-color: lighten($body-color-5, 15%); }
         }
       }
     }
@@ -98,12 +123,31 @@ audio {
     cursor: pointer;
     transition: background-color 200ms;
 
+    .body-color-0 & { background-color: $body-color-0; }
+    .body-color-1 & { background-color: $body-color-1; }
+    .body-color-2 & { background-color: $body-color-2; }
+    .body-color-3 & { background-color: $body-color-3; }
+    .body-color-4 & { background-color: $body-color-4; }
+    .body-color-5 & { background-color: $body-color-5; }
+
     &:hover {
       background-color: lighten($bg, 15%);
+      .body-color-0 & { background-color: lighten($body-color-0, 15%); }
+      .body-color-1 & { background-color: lighten($body-color-1, 15%); }
+      .body-color-2 & { background-color: lighten($body-color-2, 15%); }
+      .body-color-3 & { background-color: lighten($body-color-3, 15%); }
+      .body-color-4 & { background-color: lighten($body-color-4, 15%); }
+      .body-color-5 & { background-color: lighten($body-color-5, 15%); }
     }
 
     &:active {
       background-color: lighten($bg, 20%);
+      .body-color-0 & { background-color: lighten($body-color-0, 20%); }
+      .body-color-1 & { background-color: lighten($body-color-1, 20%); }
+      .body-color-2 & { background-color: lighten($body-color-2, 20%); }
+      .body-color-3 & { background-color: lighten($body-color-3, 20%); }
+      .body-color-4 & { background-color: lighten($body-color-4, 20%); }
+      .body-color-5 & { background-color: lighten($body-color-5, 20%); }
     }
 
     &.previous {
@@ -143,6 +187,10 @@ audio {
       }
     }
     .album-2 {
+      opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
       @media (min-width: 891px) {
         transform: translate3d(-225px, 0, 0) rotateY(-180deg);
       }
@@ -162,6 +210,10 @@ audio {
       }
     }
     .album-1 {
+      opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
       @media (min-width: 891px) {
         transform: translate3d(225px, 0, 0) rotateY(-180deg);
       }
@@ -186,15 +238,15 @@ audio {
   transform-style: preserve-3d;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  // opacity: 0.8;
+  opacity: 0.7;
 
   &:active {
     transform: scale(0.9);
   }
 
-  // &:hover {
-  //   opacity: 1;
-  // }
+  &:hover {
+    opacity: 1;
+  }
 
   @media (max-height: 650px) {
     width: 300px;
@@ -223,7 +275,6 @@ audio {
   }
 
   .__title {
-    font-family: Helvetica;
     font-weight: 200;
     font-size: 21px;
     color: lighten($bg, 20%);
@@ -237,6 +288,13 @@ audio {
     left: 20px;
     right: 20px;
 
+    .body-color-0 & { color: lighten($body-color-0, 20%); }
+    .body-color-1 & { color: lighten($body-color-1, 20%); }
+    .body-color-2 & { color: lighten($body-color-2, 20%); }
+    .body-color-3 & { color: lighten($body-color-3, 20%); }
+    .body-color-4 & { color: lighten($body-color-4, 20%); }
+    .body-color-5 & { color: lighten($body-color-5, 20%); }
+
     &:hover {
       text-decoration: underline;
     }
@@ -245,6 +303,12 @@ audio {
   .__song-list {
     padding: 20px;
     margin-top: 20px;
+    @media (max-width: 500px) {
+      margin-top: 10px;
+    }
+    @media (max-width: 350px) {
+      margin-top: 0;
+    }
   }
 
   .__progress {
@@ -254,6 +318,13 @@ audio {
     right: 0;
     width: 0;
     background-color: $bg;
+
+    .body-color-0 & { background-color: $body-color-0; }
+    .body-color-1 & { background-color: $body-color-1; }
+    .body-color-2 & { background-color: $body-color-2; }
+    .body-color-3 & { background-color: $body-color-3; }
+    .body-color-4 & { background-color: $body-color-4; }
+    .body-color-5 & { background-color: $body-color-5; }
   }
 
   .__back,
@@ -301,9 +372,9 @@ audio {
 }
 
 .song {
-  opacity: 0.3;
-  font-family: Helvetica;
-  font-size: 15px;
+  opacity: 0.5;
+  font-size: 16px;
+  font-weight: 200;
   color: #FFFFFF;
   line-height: 20px;
   padding: 5px 40px;
@@ -316,8 +387,12 @@ audio {
     size: auto 16px;
   }
 
+  @media (max-width: 350px) {
+    padding: 3px 40px;
+  }
+
   &:hover {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
   &.playing {
@@ -325,6 +400,13 @@ audio {
     padding: 10px 40px;
     border-top: 1px solid $bg;
     border-bottom: 1px solid $bg;
+    .body-color-0 & { border-color: $body-color-0; }
+    .body-color-1 & { border-color: $body-color-1; }
+    .body-color-2 & { border-color: $body-color-2; }
+    .body-color-3 & { border-color: $body-color-3; }
+    .body-color-4 & { border-color: $body-color-4; }
+    .body-color-5 & { border-color: $body-color-5; }
+
     margin: 5px 0;
     opacity: 0.8;
     background: {

@@ -39,6 +39,10 @@
     $albums.addClass('opened opened-' + $album.data('album-no'));
     $openedAlbum = $album;
     setSongs();
+
+    setTimeout(function() {
+      $openedAlbum.find('.__front').hide();
+    }, 1000);
   }
 
   function showPlayer() {
@@ -102,10 +106,7 @@
     if (!$openedAlbum) {
       openAlbum($album);
 
-      setTimeout(function() {
-        $openedAlbum.find('.__front').hide();
-        showPlayer();
-      }, 1000);
+      setTimeout(showPlayer, 1000);
     } else if ($album[0] !== $openedAlbum[0]) {
       closeAlbum();
       lockTime = 2000;

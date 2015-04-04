@@ -1,7 +1,10 @@
 (function() {
   'use strict';
 
-  $('.bg-layer-1').css('background-image', 'url(/images/sky' + parseInt(Math.random() * 6, 10) + '.jpg)');
+  var skyIndex = parseInt(Math.random() * 6, 10);
+
+  $('.bg-layer-1').css('background-image', 'url(/images/sky' + skyIndex + '.jpg)');
+  $('body').addClass('body-color-' + skyIndex);
 
   // var skyz = ['27', '3v', '55', '57', '59', '7v'];
 
