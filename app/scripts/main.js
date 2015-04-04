@@ -1,17 +1,28 @@
 /* jshint devel:true */
 (function() {
   'use strict';
+  var i, k;
 
   var routes = {
     ', /, /index, /home': 'index',
     'music, /music': 'music'
   };
 
-  for (var k in routes) {
+  for (k in routes) {
     var split = k.split(', ');
-    for (var i = 0; i < split.length; i++) {
+    for (i = 0; i < split.length; i++) {
       routes[split[i]] = routes[k];
     }
+  }
+
+  function preloadIcon(src) {
+    var img = new Image();
+    img.src = src;
+  }
+
+  var preloadIcons = ['images/icons/pause.png'];
+  for (i = 0; i < preloadIcons.length; i++) {
+    preloadIcon(preloadIcons[i]);
   }
 
   var currentRoute = routes[window.location.hash.replace('#', '')];
