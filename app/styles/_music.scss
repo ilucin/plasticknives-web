@@ -4,6 +4,11 @@
     @media (max-height: 650px) { flex-basis: 330px; }
     @media (max-height: 500px) { flex-basis: 300px; }
     overflow: auto;
+    transition: flex-basis 200ms;
+
+    &.stretched {
+      flex-basis: 500px;
+    }
   }
 
   .header-middle {
@@ -20,6 +25,91 @@
   }
 }
 
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  background: {
+    image: url(../images/icons/close.png);
+    repeat: no-repeat;
+    size: 100%;
+  }
+}
+
+.playback-controls {
+  $bg: #B16697;
+
+  height: 0px;
+  margin: 10px 0 0 0;
+  top: -100px;
+  transition: all 200ms;
+  overflow: hidden;
+
+  &.shown {
+    height: 50px;
+  }
+
+  .__controls-container {
+    width: 200px;
+    margin: auto;
+    height: 100%;
+  }
+
+  .__main-control {
+    width: 100px;
+    height: 50px;
+    float: left;
+
+    .__circle {
+      width: 48px;
+      height: 48px;
+      border: 1px solid darken($bg, 30%);
+      margin: auto;
+      border-radius: 100%;
+    }
+  }
+
+  .__control {
+    width: 24px;
+    height: 24px;
+    margin: 13px 13px;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: $bg;
+    cursor: pointer;
+    transition: background-color 200ms;
+
+    &:hover {
+      background-color: lighten($bg, 15%);
+    }
+
+    &:active {
+      background-color: lighten($bg, 20%);
+    }
+
+    &.previous {
+      background-image: url(../images/icons/previous.png);
+    }
+
+    &.next {
+      background-image: url(../images/icons/next.png);
+    }
+
+    &.play-pause {
+      &.play {
+        background-image: url(../images/icons/play.png);
+      }
+      &.pause {
+        background-image: url(../images/icons/pause.png);
+      }
+    }
+  }
+}
+
 .albums {
   width: 850px;
   margin: auto;
@@ -31,12 +121,12 @@
   &.opened-2 {
     .album-1 {
       @media (min-width: 891px) {
-        transform: translate3d(-200px, 0, 0);
+        transform: translate3d(-225px, 0, 0);
       }
     }
     .album-2 {
       @media (min-width: 891px) {
-        transform: translate3d(-200px, 0, 0) rotateY(-180deg);
+        transform: translate3d(-225px, 0, 0) rotateY(-180deg);
       }
       @media (max-width: 890px) {
         transform: rotateY( -180deg );
@@ -47,12 +137,12 @@
   &.opened-1 {
     .album-2 {
       @media (min-width: 891px) {
-        transform: translate3d(200px, 0, 0);
+        transform: translate3d(225px, 0, 0);
       }
     }
     .album-1 {
       @media (min-width: 891px) {
-        transform: translate3d(200px, 0, 0) rotateY(-180deg);
+        transform: translate3d(225px, 0, 0) rotateY(-180deg);
       }
       @media (max-width: 890px) {
         transform: rotateY(-180deg);
@@ -70,20 +160,20 @@
   margin: 30px 50px 0 0;
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
   transition: all 1s;
-  cursor: pointer;
+  // cursor: pointer;
   position: relative;
   transform-style: preserve-3d;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  opacity: 0.8;
+  // opacity: 0.8;
 
   &:active {
     transform: scale(0.9);
   }
 
-  &:hover {
-    opacity: 1;
-  }
+  // &:hover {
+  //   opacity: 1;
+  // }
 
   @media (max-height: 650px) {
     width: 300px;
@@ -120,11 +210,17 @@
     margin-top: 20px;
     text-align: center;
     font-style: italic;
+    display: inline-block;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .__song-list {
-    text-align: center;
     padding: 20px;
+    margin-top: 20px;
   }
 
   .__back,
@@ -140,9 +236,11 @@
     backface-visibility: hidden;
     transform: rotateY(180deg);
     background-color: #1B1B1B;
+    text-align: center;
   }
 
   .__front {
+    cursor: pointer;
     background: {
       color: #1B1B1B;
       repeat: no-repeat;
@@ -177,7 +275,12 @@
   // letter-spacing: 1px;
   color: #FFFFFF;
   line-height: 30px;
+  cursor: pointer;
   @media (max-height: 650px) { line-height: 22px; }
+
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 .social {

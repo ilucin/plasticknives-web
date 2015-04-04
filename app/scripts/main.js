@@ -17,7 +17,7 @@
   var currentRoute = routes[window.location.hash.replace('#', '')];
 
   var $page = $('.container[data-route=' + currentRoute + ']');
-  $page.removeClass('hidden');
+  // $page.removeClass('hidden');
 
   var $header = $page.find('.header');
   var $counterContainer = $page.find('.counter-container');
