@@ -83,6 +83,8 @@
     </header>
 
     <section id="content" class="content">
+      <audio></audio>
+
       <div class="playback-controls">
         <div class="__controls-container">
           <div class="__control previous"></div>
@@ -95,32 +97,36 @@
 
       <div class="albums">
         <div class="album album-1" data-album-no="1">
+          <div class="__progress"></div>
           <div class="__front"></div>
           <div class="__back">
+            <div class="close-button"></div>
             <div class="__song-list">
-              <div class="song"> Housewife Stash Party </div>
-              <div class="song"> Crossfire (feat. Diyala) </div>
-              <div class="song"> Dying Kings </div>
-              <div class="song"> Crta (feat. Sara Renar) </div>
-              <div class="song"> Broad Stroke </div>
-              <div class="song"> Both Sides Of The Atlantic </div>
+              <div class="song" data-src="songs/housewife-stash-party.mp3" data-duration="360"> Housewife Stash Party </div>
+              <div class="song" data-src="songs/crossfire.mp3" data-duration="240"> Crossfire (feat. Diyala) </div>
+              <div class="song" data-src="songs/big-bag-of-tricks.mp3" data-duration="506"> Big Bag Of Tricks </div>
+              <div class="song" data-src="songs/dying-kings.mp3" data-duration="439"> Dying Kings </div>
+              <div class="song" data-src="songs/crta.mp3" data-duration="170"> Crta (feat. Sara Renar) </div>
+              <div class="song" data-src="songs/broad-stroke.mp3" data-duration="119"> Broad Stroke </div>
+              <div class="song" data-src="songs/both-sides-of-the-atlantic.mp3" data-duration="400"> Both Sides Of The Atlantic </div>
             </div>
             <a target="_blank" href="https://plasticknives.bandcamp.com/album/both-sides-of-the-atlantic" class="__title"> Both Sides Of The Atlantic </a>
           </div>
         </div>
         <div class="album album-2" data-album-no="2">
+          <div class="__progress"></div>
           <div class="__front"></div>
           <div class="__back">
             <div class="close-button"></div>
             <div class="__song-list">
-              <div class="song"> Eyes On The Prize </div>
-              <div class="song"> Future Ex </div>
-              <div class="song"> Milk Teeth </div>
-              <div class="song"> Pleasure Delayer </div>
-              <div class="song"> Hooker Hickey </div>
-              <div class="song"> You Get The Worst Of Me (feat. Hrvoje Malić)  </div>
-              <div class="song"> Tounge In Cheek </div>
-              <div class="song"> Residue </div>
+              <div class="song" data-src="songs/eyes-on-the-prize.mp3" data-duration="85"> Eyes On The Prize </div>
+              <div class="song" data-src="songs/future-ex.mp3" data-duration="184"> Future Ex </div>
+              <div class="song" data-src="songs/milk-teeth.mp3" data-duration="146"> Milk Teeth </div>
+              <div class="song" data-src="songs/pleasure-delayer.mp3" data-duration="229"> Pleasure Delayer </div>
+              <div class="song" data-src="songs/hooker-hickey.mp3" data-duration="226"> Hooker Hickey </div>
+              <div class="song" data-src="songs/you-get-the-worst-of-me.mp3" data-duration="154"> You Get The Worst Of Me <div> (feat. Hrvoje Malić) </div> </div>
+              <div class="song" data-src="songs/tounge-in-cheek.mp3" data-duration="354"> Tounge In Cheek </div>
+              <div class="song" data-src="songs/residue.mp3" data-duration="97"> Residue </div>
             </div>
             <a target="_blank" href="https://plasticknives.bandcamp.com/album/tongue-in-cheek" class="__title"> Tounge In Cheek </a>
           </div>
@@ -151,6 +157,7 @@
   <script src="scripts/main.js"></script>
   <script src="scripts/colors.js"></script>
   <script src="scripts/counter.js"></script>
+  <script src="scripts/player.js"></script>
   <script src="scripts/music.js"></script>
   <script src="scripts/ga.js"> </script>
   <!-- endbuild -->

@@ -1,3 +1,5 @@
+$bg: #B16697;
+
 .music-container {
   .content {
     flex-basis: 450px;
@@ -25,6 +27,10 @@
   }
 }
 
+audio {
+  display: none;
+}
+
 .close-button {
   position: absolute;
   top: 20px;
@@ -40,13 +46,15 @@
 }
 
 .playback-controls {
-  $bg: #B16697;
-
   height: 0px;
   margin: 10px 0 0 0;
   top: -100px;
   transition: all 200ms;
   overflow: hidden;
+
+  @media (max-width: 500px) {
+    margin-bottom: 20px;
+  }
 
   &.shown {
     height: 50px;
@@ -69,6 +77,13 @@
       border: 1px solid darken($bg, 30%);
       margin: auto;
       border-radius: 100%;
+      cursor: pointer;
+
+      &:hover {
+        .__control {
+          background-color: lighten($bg, 15%);
+        }
+      }
     }
   }
 
@@ -123,6 +138,9 @@
       @media (min-width: 891px) {
         transform: translate3d(-225px, 0, 0);
       }
+      @media (max-width: 500px) {
+        display: none;
+      }
     }
     .album-2 {
       @media (min-width: 891px) {
@@ -138,6 +156,9 @@
     .album-2 {
       @media (min-width: 891px) {
         transform: translate3d(225px, 0, 0);
+      }
+      @media (max-width: 500px) {
+        display: none;
       }
     }
     .album-1 {
@@ -205,13 +226,16 @@
     font-family: Helvetica;
     font-weight: 200;
     font-size: 21px;
-    color: #E5BE7F;
+    color: lighten($bg, 20%);
     line-height: 29px;
     margin-top: 20px;
     text-align: center;
     font-style: italic;
-    display: inline-block;
     text-decoration: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
 
     &:hover {
       text-decoration: underline;
@@ -221,6 +245,15 @@
   .__song-list {
     padding: 20px;
     margin-top: 20px;
+  }
+
+  .__progress {
+    position: absolute;
+    top: -2px;
+    height: 2px;
+    right: 0;
+    width: 0;
+    background-color: $bg;
   }
 
   .__back,
@@ -271,15 +304,32 @@
   opacity: 0.3;
   font-family: Helvetica;
   font-size: 15px;
-  font-weight: 200;
-  // letter-spacing: 1px;
   color: #FFFFFF;
-  line-height: 30px;
+  line-height: 20px;
+  padding: 5px 40px;
   cursor: pointer;
   @media (max-height: 650px) { line-height: 22px; }
+  transition: all 400ms;
+  background: {
+    repeat: no-repeat;
+    position: 10px 50%;
+    size: auto 16px;
+  }
 
   &:hover {
     opacity: 0.5;
+  }
+
+  &.playing {
+    font-weight: bold;
+    padding: 10px 40px;
+    border-top: 1px solid $bg;
+    border-bottom: 1px solid $bg;
+    margin: 5px 0;
+    opacity: 0.8;
+    background: {
+      image: url(../images/icons/volume-down.png);
+    }
   }
 }
 

@@ -1,0 +1,97 @@
+(function() {
+  'use strict';
+  var audioEl = window.audioEl = document.querySelector('audio');
+  var $audioEl = $(audioEl);
+  var songs = [];
+  var currSongIndex = -1;
+  var playbackTimer;
+  var currSongDuration;
+
+  function startPlaybackTimer() {
+    currSongDuration = songs[currSongIndex].duration || audioEl.duration;
+
+    $audioEl.trigger('song-progress', audioEl.currentTime / currSongDuration);
+    playbackTimer = window.setInterval(function() {
+      $audioEl.trigger('song-progress', audioEl.currentTime / currSongDuration);
+    }, 500);
+  }
+
+  function stopPlaybackTimer() {
+    currSongDuration = 0;
+    window.clearInterval(playbackTimer);
+  }
+
+  function setSongs(newSongs) {
+    stop();
+    songs = newSongs;
+  }
+
+  function play() {
+    if (currSongIndex === -1 && songs.length > 0) {
+      currSongIndex = 0;
+      audioEl.src = songs[currSongIndex].src;
+    }
+
+    audioEl.play();
+    startPlaybackTimer();
+    $audioEl.trigger('song-play', currSongIndex);
+  }
+
+  function pause() {
+    audioEl.pause();
+    stopPlaybackTimer();
+    $audioEl.trigger('song-pause', currSongIndex);
+  }
+
+  function stop() {
+    $audioEl.trigger('song-progress', 0);
+    pause();
+  }
+
+  function playCurrentSong() {
+    pause();
+    audioEl.src = songs[currSongIndex].src;
+    play();
+  }
+
+  function playSong(index) {
+    if (songs[index]) {
+      currSongIndex = index;
+      audioEl.src = songs[currSongIndex].src;
+      play();
+    }
+  }
+
+  function next() {
+    if (currSongIndex < songs.length - 1) {
+      stop();
+      currSongIndex++;
+      playCurrentSong();
+    }
+  }
+
+  function previous() {
+    if (currSongIndex > 0) {
+      stop();
+      currSongIndex--;
+      playCurrentSong();
+    }
+  }
+
+  function reset() {
+    stop();
+    audioEl.src = '';
+    currSongIndex = -1;
+    songs = [];
+  }
+
+  window.player = {
+    setSongs: setSongs,
+    play: play,
+    playSong: playSong,
+    pause: pause,
+    next: next,
+    previous: previous,
+    reset: reset
+  };
+})();
