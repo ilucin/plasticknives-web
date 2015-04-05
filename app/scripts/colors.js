@@ -1,4 +1,4 @@
-(function() {
+$(function() {
   'use strict';
 
   var skyIndex = null;
@@ -141,4 +141,4 @@
   // }
   // window.setInterval(setRandomColor, 2000);
   // setRandomColor();
-})();
+});

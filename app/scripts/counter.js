@@ -1,4 +1,4 @@
-(function() {
+$(function() {
   'use strict';
 
   var timer;
@@ -56,4 +56,4 @@
 
   timer = window.setInterval(counterTick);
   counterTick();
-})();
+});

@@ -1,4 +1,4 @@
-(function() {
+$(function() {
   'use strict';
   var audioEl = window.audioEl = document.querySelector('audio');
   var $audioEl = $(audioEl);
@@ -108,4 +108,4 @@
     setTime: setTime,
     reset: reset
   };
-})();
+});

@@ -243,7 +243,7 @@ audio {
   float: left;
   margin: 30px 50px 0 0;
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
-  transition: all 1s;
+  transition: transform 1s, opacity 500ms, height 1s, margin 1s, width 1s;
   position: relative;
   transform-style: preserve-3d;
   opacity: 0.6;
@@ -274,8 +274,11 @@ audio {
   }
 
   &.hidden-mobile {
-    @media (max-width: 500px) {
+    @media (max-width: 890px) {
       height: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      opacity: 0;
     }
   }
 
