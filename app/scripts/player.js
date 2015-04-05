@@ -6,6 +6,7 @@
   var currSongIndex = -1;
   var playbackTimer;
   var currSongDuration;
+  var isPlaying = false;
 
   function startPlaybackTimer() {
     currSongDuration = songs[currSongIndex].duration || audioEl.duration;
@@ -33,12 +34,14 @@
     }
 
     audioEl.play();
+    isPlaying = true;
     startPlaybackTimer();
     $audioEl.trigger('song-play', currSongIndex);
   }
 
   function pause() {
     audioEl.pause();
+    isPlaying = false;
     stopPlaybackTimer();
     $audioEl.trigger('song-pause', currSongIndex);
   }
@@ -55,9 +58,11 @@
   }
 
   function playSong(index) {
-    if (songs[index]) {
-      currSongIndex = index;
-      audioEl.src = songs[currSongIndex].src;
+    if (songs[index] && !(index === currSongIndex && isPlaying)) {
+      if (currSongIndex !== index) {
+        currSongIndex = index;
+        audioEl.src = songs[currSongIndex].src;
+      }
       play();
     }
   }
@@ -83,6 +88,7 @@
     audioEl.src = '';
     currSongIndex = -1;
     songs = [];
+    $audioEl.trigger('pause');
   }
 
   window.player = {
