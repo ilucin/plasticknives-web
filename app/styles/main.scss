@@ -1,0 +1,73 @@
+$source-sans-pro: 'Source Sans Pro';
+$font: 'Source Sans Pro';
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  user-select: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+body {
+  font-family: $font;
+  overflow: hidden;
+}
+
+.bg-layer {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+  background-color: #151515;
+  background-size: 100% 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.centered-stretchable-block {
+  flex: 1;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+  .header-bg {
+    background-color: #151515;
+    height: 500px;
+    flex: 1;
+  }
+}
+
+.content {
+  background-color: #151515;
+  position: relative;
+}
+
+.footer {
+  background-color: #151515;
+}
+
+@import "index";
+@import "music";

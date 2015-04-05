@@ -1,0 +1,8 @@
+{
+  "name": "plastic-knives-web",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "sweep": "~1.2.2"
+  }
+}

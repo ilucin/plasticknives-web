@@ -1,0 +1,498 @@
+$bg: #888;
+$body-color-0: #745E9D;
+$body-color-1: #7B1B40;
+$body-color-2: #5C2C96;
+$body-color-3: #5F3489;
+$body-color-4: #2E4064;
+$body-color-5: #B16697;
+
+.music-container {
+  .content {
+    height: 450px;
+    @media (max-height: 650px) { height: 380px; }
+    @media (max-height: 500px) { height: 340px; }
+    overflow: auto;
+    transition: height 500ms;
+
+    @media (min-width: 891px) {
+      overflow: hidden;
+    }
+
+    &.stretched {
+      height: 500px;
+      @media (max-height: 650px) { height: 420px; }
+      @media (max-height: 500px) { height: 380px; }
+    }
+  }
+
+  .header-middle {
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      height: 200px;
+      background: url(../images/punch-black.png);
+      background-position: 50%;
+      background-size: 100%;
+    }
+  }
+}
+
+audio {
+  display: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  z-index: 1;
+  padding: 5px;
+  border-radius: 3px;
+  background: {
+    color: #1B1B1B;
+    image: url(../images/icons/close.png);
+    repeat: no-repeat;
+    size: 14px;
+    position: 50%;
+  }
+
+  @media (max-width: 500px) { top: 2px; right: 2px; }
+}
+
+.playback-controls {
+  height: 0px;
+  margin: 10px 0 0 0;
+  top: -100px;
+  transition: all 500ms;
+  overflow: hidden;
+
+  @media (max-width: 500px) {
+    margin-bottom: 20px;
+  }
+
+  &.shown {
+    height: 50px;
+  }
+
+  .__controls-container {
+    width: 200px;
+    margin: auto;
+    height: 100%;
+  }
+
+  .__main-control {
+    width: 100px;
+    height: 50px;
+    float: left;
+
+    .__circle {
+      width: 48px;
+      height: 48px;
+      margin: auto;
+      border-radius: 100%;
+      cursor: pointer;
+      border: 1px solid #444;
+      .body-color-0 & { border: 1px solid $body-color-0; }
+      .body-color-1 & { border: 1px solid $body-color-1; }
+      .body-color-2 & { border: 1px solid $body-color-2; }
+      .body-color-3 & { border: 1px solid $body-color-3; }
+      .body-color-4 & { border: 1px solid $body-color-4; }
+      .body-color-5 & { border: 1px solid $body-color-5; }
+
+      &:hover {
+        .__control {
+          background-color: #888;
+          .body-color-0 & { background-color: lighten($body-color-0, 15%); }
+          .body-color-1 & { background-color: lighten($body-color-1, 15%); }
+          .body-color-2 & { background-color: lighten($body-color-2, 15%); }
+          .body-color-3 & { background-color: lighten($body-color-3, 15%); }
+          .body-color-4 & { background-color: lighten($body-color-4, 15%); }
+          .body-color-5 & { background-color: lighten($body-color-5, 15%); }
+        }
+      }
+    }
+  }
+
+  .__control {
+    width: 24px;
+    height: 24px;
+    margin: 13px 13px;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: $bg;
+    cursor: pointer;
+    transition: background-color 200ms;
+
+    .body-color-0 & { background-color: $body-color-0; }
+    .body-color-1 & { background-color: $body-color-1; }
+    .body-color-2 & { background-color: $body-color-2; }
+    .body-color-3 & { background-color: $body-color-3; }
+    .body-color-4 & { background-color: $body-color-4; }
+    .body-color-5 & { background-color: $body-color-5; }
+
+    &:hover {
+      background-color: lighten($bg, 15%);
+      .body-color-0 & { background-color: lighten($body-color-0, 15%); }
+      .body-color-1 & { background-color: lighten($body-color-1, 15%); }
+      .body-color-2 & { background-color: lighten($body-color-2, 15%); }
+      .body-color-3 & { background-color: lighten($body-color-3, 15%); }
+      .body-color-4 & { background-color: lighten($body-color-4, 15%); }
+      .body-color-5 & { background-color: lighten($body-color-5, 15%); }
+    }
+
+    &:active {
+      background-color: lighten($bg, 20%);
+      .body-color-0 & { background-color: lighten($body-color-0, 20%); }
+      .body-color-1 & { background-color: lighten($body-color-1, 20%); }
+      .body-color-2 & { background-color: lighten($body-color-2, 20%); }
+      .body-color-3 & { background-color: lighten($body-color-3, 20%); }
+      .body-color-4 & { background-color: lighten($body-color-4, 20%); }
+      .body-color-5 & { background-color: lighten($body-color-5, 20%); }
+    }
+
+    &.previous {
+      background-image: url(../images/icons/previous.png);
+    }
+
+    &.next {
+      background-image: url(../images/icons/next.png);
+    }
+
+    &.play-pause {
+      &.play {
+        background-image: url(../images/icons/play.png);
+      }
+      &.pause {
+        background-image: url(../images/icons/pause.png);
+      }
+    }
+  }
+}
+
+.albums {
+  width: 850px;
+  margin: auto;
+  @media (max-height: 650px) { width: 650px; }
+  @media (max-width: 890px) { width: 400px; }
+  @media (max-width: 500px) { width: 340px; }
+  @media (max-width: 380px) { width: 300px; }
+
+  &.opened {
+    .album {
+      margin-bottom: 0;
+
+      @media (max-width: 380px) {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+
+  &.opened-2 {
+    .album-1 {
+      @media (min-width: 891px) {
+        transform: translate3d(-225px, 0, 0);
+      }
+    }
+    .album-2 {
+      opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
+      @media (min-width: 891px) {
+        transform: translate3d(-225px, 0, 0) rotateY(-180deg);
+      }
+      @media (max-width: 890px) {
+        transform: rotateY( -180deg );
+      }
+    }
+  }
+
+  &.opened-1 {
+    .album-2 {
+      @media (min-width: 891px) {
+        transform: translate3d(225px, 0, 0);
+      }
+    }
+    .album-1 {
+      opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
+      @media (min-width: 891px) {
+        transform: translate3d(225px, 0, 0) rotateY(-180deg);
+      }
+      @media (max-width: 890px) {
+        transform: rotateY(-180deg);
+      }
+    }
+  }
+}
+
+.album {
+  display: block;
+  width: 400px;
+  height: 400px;
+  background-color: #1B1B1B;
+  float: left;
+  margin: 30px 50px 0 0;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+  transition: transform 1s, opacity 500ms, height 1s, margin 1s, width 1s;
+  position: relative;
+  transform-style: preserve-3d;
+  opacity: 0.6;
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-height: 650px) {
+    width: 300px;
+    height: 300px;
+    margin-top: 10px;
+  }
+  @media (max-width: 500px) {
+    width: 340px;
+    height: 340px;
+    margin: 0 auto 50px auto;
+    float: none;
+    box-shadow: none;
+  }
+  @media (max-width: 380px) {
+    width: 240px;
+    height: 240px;
+  }
+
+  &.hidden-mobile {
+    @media (max-width: 890px) {
+      height: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      opacity: 0;
+    }
+  }
+
+  &:last-child {
+    @media (min-width: 891px) {
+      margin-right: 0;
+    }
+    @media (max-width: 890px) {
+      margin-bottom: 50px;
+    }
+  }
+
+  .__title {
+    font-weight: 400;
+    font-size: 21px;
+    color: lighten($bg, 20%);
+    line-height: 29px;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+
+    @media (max-width: 380px) {
+      bottom: 5px;
+      font-size: 18px;
+    }
+
+    .body-color-0 & { color: lighten($body-color-0, 20%); }
+    .body-color-1 & { color: lighten($body-color-1, 20%); }
+    .body-color-2 & { color: lighten($body-color-2, 20%); }
+    .body-color-3 & { color: lighten($body-color-3, 20%); }
+    .body-color-4 & { color: lighten($body-color-4, 20%); }
+    .body-color-5 & { color: lighten($body-color-5, 20%); }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .__song-list {
+    padding: 20px;
+    margin-top: 20px;
+    @media (max-width: 500px) { margin-top: 10px; }
+    @media (max-width: 380px) { margin-top: 0; padding: 10px; }
+    @media (max-height: 640px) { margin-top: 0; padding: 10px; }
+  }
+
+  .__progress {
+    position: absolute;
+    top: -10px;
+    height: 10px;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+
+    .__progress-indicator {
+      width: 0;
+      background-color: $bg;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+
+      .body-color-0 & { background-color: $body-color-0; }
+      .body-color-1 & { background-color: $body-color-1; }
+      .body-color-2 & { background-color: $body-color-2; }
+      .body-color-3 & { background-color: $body-color-3; }
+      .body-color-4 & { background-color: $body-color-4; }
+      .body-color-5 & { background-color: $body-color-5; }
+    }
+  }
+
+  .__back,
+  .__front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .__back {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background-color: #1B1B1B;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .__front {
+    cursor: pointer;
+    background: {
+      color: #1B1B1B;
+      repeat: no-repeat;
+      size: 100%;
+    }
+  }
+
+  &.album-1 {
+    .__front {
+      background-image: url(../images/albums/album-1.png);
+    }
+  }
+  &.album-2 {
+    .__front {
+      background-image: url(../images/albums/album-2.png);
+    }
+    @media (max-width: 500px) { margin-bottom: 30px; }
+  }
+}
+
+.song {
+  opacity: 0.5;
+  font-size: 16px;
+  font-weight: 200;
+  color: #FFFFFF;
+  line-height: 20px;
+  padding: 5px 40px;
+  cursor: pointer;
+  @media (max-height: 650px) { line-height: 22px; }
+  transition: all 400ms;
+  background: {
+    repeat: no-repeat;
+    position: 10px 50%;
+    size: auto 16px;
+  }
+
+  @media (max-width: 380px) { padding: 3px 40px; }
+  @media (max-height: 640px) { padding: 3px 40px; }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.playing {
+    font-weight: bold;
+    padding: 10px 40px;
+    border-top: 1px solid $bg;
+    border-bottom: 1px solid $bg;
+    margin: 5px 0;
+    opacity: 0.8;
+
+    .body-color-0 & { border-color: $body-color-0; }
+    .body-color-1 & { border-color: $body-color-1; }
+    .body-color-2 & { border-color: $body-color-2; }
+    .body-color-3 & { border-color: $body-color-3; }
+    .body-color-4 & { border-color: $body-color-4; }
+    .body-color-5 & { border-color: $body-color-5; }
+
+    @media (max-width: 380px) { padding: 6px 40px;  margin: 0; }
+    @media (max-height: 650px) { padding: 6px 40px;  margin: 0; }
+  }
+}
+
+.social {
+  margin: auto;
+  text-align: center;
+
+  a {
+    display: inline-block;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 150px;
+    height: 30px;
+    background: {
+      repeat: no-repeat;
+      position: 50%;
+      size: auto 20px;
+    }
+
+    @media (max-width: 763px) {
+      width: 80px;
+    }
+
+    @media (max-width: 500px) {
+      height: 24px;
+      width: 50px;
+    }
+
+    @media (max-width: 380px) { height: 22px; }
+    @media (max-width: 350px) { height: 18px; }
+  }
+
+  .__bandcamp {
+    background-image: url(../images/social/bandcamp.png);
+    @media (max-width: 763px) { background-image: url(../images/social/bandcamp-short.png); }
+    background-size: auto 18px;
+  }
+  .__facebook {
+    background-image: url(../images/social/facebook-letters.png);
+    @media (max-width: 763px) { background-image: url(../images/social/facebook-short.png); }
+    background-size: auto 17px;
+  }
+  .__youtube {
+    background-image: url(../images/social/youtube.png);
+    background-size: auto 17px;
+  }
+  .__mail {
+    background-image: url(../images/social/mail.png);
+    background-size: auto 20px;
+  }
+  .__soundcloud {
+    background-image: url(../images/social/soundcloud.png);
+    @media (max-width: 763px) { background-image: url(../images/social/soundcloud-short.png); }
+    background-size: auto 17px;
+
+    @media (max-width: 500px) {
+      position: relative;
+      top: -2px;
+    }
+  }
+}
