@@ -2,6 +2,7 @@ $(function() {
   'use strict';
 
   var $openedAlbum = null;
+  var $progressIndicator = null;
   var locked = false;
   var animationEnabled = true;
 
@@ -48,8 +49,9 @@ $(function() {
     $openedAlbum.find('.__front').show();
     $albums.removeClass('opened opened-1 opened-2');
     resetSongs();
-    $openedAlbum = null;
     $album.siblings().removeClass('hidden-mobile');
+    $openedAlbum = null;
+    $progressIndicator = null;
 
     if (is2) {
       animateScrollingToBottom($content, 1500);
@@ -60,6 +62,7 @@ $(function() {
     $albums.addClass('opened opened-' + $album.data('album-no'));
     $album.siblings().addClass('hidden-mobile');
     $openedAlbum = $album;
+    $progressIndicator = $openedAlbum.find('.__progress-indicator');
     setSongs();
 
     setTimeout(function() {
@@ -110,9 +113,13 @@ $(function() {
   });
 
   $audio.on('song-progress', function(ev, progress) {
-    if ($openedAlbum) {
-      $openedAlbum.find('.__progress').css('width', (progress * 100).toFixed(2) + '%');
+    if ($progressIndicator) {
+      $progressIndicator.css('width', (progress * 100).toFixed(2) + '%');
     }
+  });
+
+  $albums.on('click', '.__progress', function(ev) {
+    player.setTime((ev.pageX - $openedAlbum[0].getBoundingClientRect().left) / $(this).width());
   });
 
   $albums.on('click', '.album .__front, .album .__back .close-button', function(ev) {

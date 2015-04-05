@@ -13,7 +13,11 @@
 
     $audioEl.trigger('song-progress', audioEl.currentTime / currSongDuration);
     playbackTimer = window.setInterval(function() {
-      $audioEl.trigger('song-progress', audioEl.currentTime / currSongDuration);
+      var progress = audioEl.currentTime / currSongDuration;
+      $audioEl.trigger('song-progress', progress);
+      if (Math.round(audioEl.currentTime) >= currSongDuration) {
+        next();
+      }
     }, 500);
   }
 
@@ -91,6 +95,10 @@
     $audioEl.trigger('pause');
   }
 
+  function setTime(timePercentage) {
+    audioEl.currentTime = timePercentage * currSongDuration;
+  }
+
   window.player = {
     setSongs: setSongs,
     play: play,
@@ -98,6 +106,7 @@
     pause: pause,
     next: next,
     previous: previous,
+    setTime: setTime,
     reset: reset
   };
 })();
