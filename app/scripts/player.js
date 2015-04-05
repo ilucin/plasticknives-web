@@ -22,7 +22,6 @@
   }
 
   function stopPlaybackTimer() {
-    currSongDuration = 0;
     window.clearInterval(playbackTimer);
   }
 
