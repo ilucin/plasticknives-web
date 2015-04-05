@@ -1,10 +1,26 @@
 (function() {
   'use strict';
 
-  var skyIndex = parseInt(Math.random() * 6, 10);
+  var skyIndex = null;
 
-  $('.bg-layer-1').css('background-image', 'url(/images/sky' + skyIndex + '.jpg)');
-  $('body').addClass('body-color-' + skyIndex);
+  function setBg() {
+    skyIndex = parseInt(Math.random() * 6, 10);
+    $('.bg-layer-1').css('background-image', 'url(/images/sky' + skyIndex + '.jpg)');
+    $('body').addClass('body-color-' + skyIndex);
+  }
+
+  window.colors = {
+    nextBg: function() {
+      if (skyIndex !== null) {
+        $('body').removeClass('body-color-' + skyIndex);
+        skyIndex = null;
+      }
+
+      setBg();
+    }
+  };
+
+  setBg();
 
   // var skyz = ['27', '3v', '55', '57', '59', '7v'];
 

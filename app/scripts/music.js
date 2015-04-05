@@ -1,6 +1,9 @@
 $(function() {
   'use strict';
 
+  var player = window.player;
+  var colors = window.colors;
+
   var $openedAlbum = null;
   var $progressIndicator = null;
   var locked = false;
@@ -9,7 +12,6 @@ $(function() {
   var $content = $('.content');
   var $albums = $('.albums');
   var $playbackControls = $('.playback-controls');
-  var player = window.player;
   var $audio = $('audio');
 
   function animateScrollingToBottom($el, time) {
@@ -109,6 +111,7 @@ $(function() {
     if (index !== $currPlaying.index()) {
       $openedAlbum.find('.song').removeClass('playing');
       $openedAlbum.find('.song').eq(index).addClass('playing');
+      colors.nextBg();
     }
   });
 
