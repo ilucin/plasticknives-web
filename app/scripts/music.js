@@ -30,7 +30,7 @@ $(function() {
 
   function resetSongs() {
     $openedAlbum.find('.song').removeClass('playing');
-    $openedAlbum.find('.__progress').css('width', 0);
+    $progressIndicator.css('width', 0);
     player.reset();
   }
 
