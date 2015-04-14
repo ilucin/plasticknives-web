@@ -1,14 +1,14 @@
 $bg: #888;
-$body-color-0: #745E9D;
-$body-color-1: #7B1B40;
-$body-color-2: #5C2C96;
-$body-color-3: #5F3489;
-$body-color-4: #2E4064;
-$body-color-5: #B16697;
+$body-color-1: #FF6F10;
+$body-color-2: #DA075E;
+$body-color-3: #EE10D7;
+$body-color-4: #FD387A;
+$body-color-5: #2DDDBF;
 
 .music-container {
   .content {
-    height: 450px;
+    height: 500px;
+    @media (max-width: 891px) { height: 450px; }
     @media (max-height: 650px) { height: 380px; }
     @media (max-height: 500px) { height: 340px; }
     overflow: auto;
@@ -22,19 +22,6 @@ $body-color-5: #B16697;
       height: 500px;
       @media (max-height: 650px) { height: 420px; }
       @media (max-height: 500px) { height: 380px; }
-    }
-  }
-
-  .header-middle {
-    width: 640px;
-    display: flex;
-    flex-direction: column;
-
-    .title {
-      height: 200px;
-      background: url(../images/punch-black.png);
-      background-position: 50%;
-      background-size: 100%;
     }
   }
 }
@@ -75,14 +62,30 @@ audio {
     margin-bottom: 20px;
   }
 
+  @media (min-width: 891px) {
+    margin: 0;
+    height: 50px;
+  }
+
   &.shown {
     height: 50px;
+
+    .__controls-container {
+      @media (min-width: 891px) {
+        margin-top: 0;
+      }
+    }
   }
 
   .__controls-container {
     width: 200px;
     margin: auto;
     height: 100%;
+
+    @media (min-width: 891px) {
+      margin-top: 50px;
+      transition: margin-top 500ms;
+    }
   }
 
   .__main-control {
@@ -97,7 +100,6 @@ audio {
       border-radius: 100%;
       cursor: pointer;
       border: 1px solid #444;
-      .body-color-0 & { border: 1px solid $body-color-0; }
       .body-color-1 & { border: 1px solid $body-color-1; }
       .body-color-2 & { border: 1px solid $body-color-2; }
       .body-color-3 & { border: 1px solid $body-color-3; }
@@ -107,7 +109,6 @@ audio {
       &:hover {
         .__control {
           background-color: #888;
-          .body-color-0 & { background-color: lighten($body-color-0, 15%); }
           .body-color-1 & { background-color: lighten($body-color-1, 15%); }
           .body-color-2 & { background-color: lighten($body-color-2, 15%); }
           .body-color-3 & { background-color: lighten($body-color-3, 15%); }
@@ -125,11 +126,10 @@ audio {
     float: left;
     background-repeat: no-repeat;
     background-size: 100%;
-    background-color: $bg;
     cursor: pointer;
     transition: background-color 200ms;
 
-    .body-color-0 & { background-color: $body-color-0; }
+    background-color: $bg;
     .body-color-1 & { background-color: $body-color-1; }
     .body-color-2 & { background-color: $body-color-2; }
     .body-color-3 & { background-color: $body-color-3; }
@@ -138,7 +138,6 @@ audio {
 
     &:hover {
       background-color: lighten($bg, 15%);
-      .body-color-0 & { background-color: lighten($body-color-0, 15%); }
       .body-color-1 & { background-color: lighten($body-color-1, 15%); }
       .body-color-2 & { background-color: lighten($body-color-2, 15%); }
       .body-color-3 & { background-color: lighten($body-color-3, 15%); }
@@ -148,7 +147,6 @@ audio {
 
     &:active {
       background-color: lighten($bg, 20%);
-      .body-color-0 & { background-color: lighten($body-color-0, 20%); }
       .body-color-1 & { background-color: lighten($body-color-1, 20%); }
       .body-color-2 & { background-color: lighten($body-color-2, 20%); }
       .body-color-3 & { background-color: lighten($body-color-3, 20%); }
@@ -243,14 +241,10 @@ audio {
   float: left;
   margin: 30px 50px 0 0;
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
-  transition: transform 1s, opacity 500ms, height 1s, margin 1s, width 1s;
+  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 500ms, height 1s, margin 1s, width 1s;
   position: relative;
   transform-style: preserve-3d;
   opacity: 0.6;
-
-  &:active {
-    transform: scale(0.9);
-  }
 
   &:hover {
     opacity: 0.8;
@@ -271,6 +265,10 @@ audio {
   @media (max-width: 380px) {
     width: 240px;
     height: 240px;
+  }
+
+  @media (min-width: 891px) {
+    margin-top: 20px;
   }
 
   &.hidden-mobile {
@@ -294,7 +292,6 @@ audio {
   .__title {
     font-weight: 400;
     font-size: 21px;
-    color: lighten($bg, 20%);
     line-height: 29px;
     margin-top: 20px;
     text-align: center;
@@ -309,12 +306,12 @@ audio {
       font-size: 18px;
     }
 
-    .body-color-0 & { color: lighten($body-color-0, 20%); }
-    .body-color-1 & { color: lighten($body-color-1, 20%); }
-    .body-color-2 & { color: lighten($body-color-2, 20%); }
-    .body-color-3 & { color: lighten($body-color-3, 20%); }
-    .body-color-4 & { color: lighten($body-color-4, 20%); }
-    .body-color-5 & { color: lighten($body-color-5, 20%); }
+    color: lighten($bg, 20%);
+    .body-color-1 & { color: $body-color-1; }
+    .body-color-2 & { color: $body-color-2; }
+    .body-color-3 & { color: $body-color-3; }
+    .body-color-4 & { color: $body-color-4; }
+    .body-color-5 & { color: $body-color-5; }
 
     &:hover {
       text-decoration: underline;
@@ -341,13 +338,12 @@ audio {
 
     .__progress-indicator {
       width: 0;
-      background-color: $bg;
       position: absolute;
       right: 0;
       bottom: 0;
       height: 2px;
 
-      .body-color-0 & { background-color: $body-color-0; }
+      background-color: $bg;
       .body-color-1 & { background-color: $body-color-1; }
       .body-color-2 & { background-color: $body-color-2; }
       .body-color-3 & { background-color: $body-color-3; }
@@ -398,7 +394,7 @@ audio {
 .song {
   opacity: 0.5;
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 400;
   color: #FFFFFF;
   line-height: 20px;
   padding: 5px 40px;
@@ -426,12 +422,11 @@ audio {
     margin: 5px 0;
     opacity: 0.8;
 
-    .body-color-0 & { border-color: $body-color-0; }
-    .body-color-1 & { border-color: $body-color-1; }
-    .body-color-2 & { border-color: $body-color-2; }
-    .body-color-3 & { border-color: $body-color-3; }
-    .body-color-4 & { border-color: $body-color-4; }
-    .body-color-5 & { border-color: $body-color-5; }
+    .body-color-1 & { border-color: $body-color-1; color: $body-color-1; }
+    .body-color-2 & { border-color: $body-color-2; color: $body-color-2; }
+    .body-color-3 & { border-color: $body-color-3; color: $body-color-3; }
+    .body-color-4 & { border-color: $body-color-4; color: $body-color-4; }
+    .body-color-5 & { border-color: $body-color-5; color: $body-color-5; }
 
     @media (max-width: 380px) { padding: 6px 40px;  margin: 0; }
     @media (max-height: 650px) { padding: 6px 40px;  margin: 0; }
@@ -453,6 +448,12 @@ audio {
       position: 50%;
       size: auto 20px;
     }
+    opacity: 0.4;
+    transition: opacity 200ms;
+
+    &:hover {
+      opacity: 0.7;
+    }
 
     @media (max-width: 763px) {
       width: 80px;
@@ -468,26 +469,26 @@ audio {
   }
 
   .__bandcamp {
-    background-image: url(../images/social/bandcamp.png);
-    @media (max-width: 763px) { background-image: url(../images/social/bandcamp-short.png); }
+    background-image: url(../images/social/bandcamp.svg);
+    @media (max-width: 763px) { background-image: url(../images/social/bandcamp-short.svg); }
     background-size: auto 18px;
   }
   .__facebook {
-    background-image: url(../images/social/facebook-letters.png);
-    @media (max-width: 763px) { background-image: url(../images/social/facebook-short.png); }
+    background-image: url(../images/social/facebook-letters.svg);
+    @media (max-width: 763px) { background-image: url(../images/social/facebook-short.svg); }
     background-size: auto 17px;
   }
   .__youtube {
-    background-image: url(../images/social/youtube.png);
+    background-image: url(../images/social/youtube.svg);
     background-size: auto 17px;
   }
   .__mail {
-    background-image: url(../images/social/mail.png);
+    background-image: url(../images/social/mail.svg);
     background-size: auto 20px;
   }
   .__soundcloud {
-    background-image: url(../images/social/soundcloud.png);
-    @media (max-width: 763px) { background-image: url(../images/social/soundcloud-short.png); }
+    background-image: url(../images/social/soundcloud.svg);
+    @media (max-width: 763px) { background-image: url(../images/social/soundcloud-short.svg); }
     background-size: auto 17px;
 
     @media (max-width: 500px) {

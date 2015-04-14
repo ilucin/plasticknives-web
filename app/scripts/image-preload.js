@@ -5,12 +5,11 @@
 
   var preloadIcons = [
     'images/icons/pause.png',
-    'images/sky0.jpg',
-    'images/sky1.jpg',
-    'images/sky2.jpg',
-    'images/sky3.jpg',
-    'images/sky4.jpg',
-    'images/sky5.jpg'
+    'images/headers/1.svg',
+    'images/headers/2.svg',
+    'images/headers/3.svg',
+    'images/headers/4.svg',
+    'images/headers/5.svg'
   ];
 
   function onImgLoad() {

@@ -72,14 +72,30 @@ $(function() {
     }, 300);
   }
 
-  function showPlayer() {
+  function _showPlayer() {
     $content.addClass('stretched');
     $playbackControls.addClass('shown');
   }
 
-  function hidePlayer() {
+  function showPlayer() {
+    if (window.innerWidth <= 890) {
+      setTimeout(_showPlayer, 800);
+    } else {
+      _showPlayer();
+    }
+  }
+
+  function _hidePlayer() {
     $playbackControls.removeClass('shown');
     $content.removeClass('stretched');
+  }
+
+  function hidePlayer() {
+    if (window.innerWidth <= 890) {
+      setTimeout(_hidePlayer, 800);
+    } else {
+      _hidePlayer();
+    }
   }
 
   var onMainControlClick = function() {
@@ -137,8 +153,8 @@ $(function() {
     var $album = $(this).parents('.album');
     if (!$openedAlbum) {
       openAlbum($album);
+      showPlayer();
 
-      setTimeout(showPlayer, 1000);
     } else if ($album[0] !== $openedAlbum[0]) {
       closeAlbum();
       lockTime = 2000;
@@ -148,8 +164,7 @@ $(function() {
       }, 1000);
     } else {
       closeAlbum();
-
-      setTimeout(hidePlayer, 1000);
+      hidePlayer();
     }
 
     locked = true;

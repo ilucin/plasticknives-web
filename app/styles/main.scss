@@ -13,19 +13,6 @@ body {
   overflow: hidden;
 }
 
-.bg-layer {
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  z-index: 1;
-  background-color: #151515;
-  background-size: 100% 100%;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -49,14 +36,29 @@ body {
 }
 
 .header {
-  display: flex;
   flex-direction: row;
   overflow: hidden;
 
-  .header-bg {
-    background-color: #151515;
-    height: 500px;
-    flex: 1;
+  background: {
+    color: #151515;
+    repeat: no-repeat;
+    position: 50%;
+    size: 650px;
+  }
+
+  .body-color-1 & { background-image: url(../images/headers/1.svg); }
+  .body-color-2 & { background-image: url(../images/headers/2.svg); }
+  .body-color-3 & { background-image: url(../images/headers/3.svg); }
+  .body-color-4 & { background-image: url(../images/headers/4.svg); }
+  .body-color-5 & { background-image: url(../images/headers/5.svg); }
+
+  @media (max-width: 891px) { background-size: 600px; }
+  @media (max-width: 700px) { background-size: 450px; }
+  @media (max-width: 500px) { background-size: 350px; }
+  @media (max-width: 400px) { background-size: 300px; }
+
+  @media (min-width: 891px) {
+    background-position: 50% 60%;
   }
 }
 
@@ -69,5 +71,4 @@ body {
   background-color: #151515;
 }
 
-@import "index";
 @import "music";
