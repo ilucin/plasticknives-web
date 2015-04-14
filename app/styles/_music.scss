@@ -5,27 +5,6 @@ $body-color-3: #EE10D7;
 $body-color-4: #FD387A;
 $body-color-5: #2DDDBF;
 
-.music-container {
-  .content {
-    height: 500px;
-    @media (max-width: 891px) { height: 450px; }
-    @media (max-height: 650px) { height: 380px; }
-    @media (max-height: 500px) { height: 340px; }
-    overflow: auto;
-    transition: height 500ms;
-
-    @media (min-width: 891px) {
-      overflow: hidden;
-    }
-
-    &.stretched {
-      height: 500px;
-      @media (max-height: 650px) { height: 420px; }
-      @media (max-height: 500px) { height: 380px; }
-    }
-  }
-}
-
 audio {
   display: none;
 }
@@ -430,70 +409,5 @@ audio {
 
     @media (max-width: 380px) { padding: 6px 40px;  margin: 0; }
     @media (max-height: 650px) { padding: 6px 40px;  margin: 0; }
-  }
-}
-
-.social {
-  margin: auto;
-  text-align: center;
-
-  a {
-    display: inline-block;
-    text-indent: -9999px;
-    overflow: hidden;
-    width: 150px;
-    height: 30px;
-    background: {
-      repeat: no-repeat;
-      position: 50%;
-      size: auto 20px;
-    }
-    opacity: 0.4;
-    transition: opacity 200ms;
-
-    &:hover {
-      opacity: 0.7;
-    }
-
-    @media (max-width: 763px) {
-      width: 80px;
-    }
-
-    @media (max-width: 500px) {
-      height: 24px;
-      width: 50px;
-    }
-
-    @media (max-width: 380px) { height: 22px; }
-    @media (max-width: 350px) { height: 18px; }
-  }
-
-  .__bandcamp {
-    background-image: url(../images/social/bandcamp.svg);
-    @media (max-width: 763px) { background-image: url(../images/social/bandcamp-short.svg); }
-    background-size: auto 18px;
-  }
-  .__facebook {
-    background-image: url(../images/social/facebook-letters.svg);
-    @media (max-width: 763px) { background-image: url(../images/social/facebook-short.svg); }
-    background-size: auto 17px;
-  }
-  .__youtube {
-    background-image: url(../images/social/youtube.svg);
-    background-size: auto 17px;
-  }
-  .__mail {
-    background-image: url(../images/social/mail.svg);
-    background-size: auto 20px;
-  }
-  .__soundcloud {
-    background-image: url(../images/social/soundcloud.svg);
-    @media (max-width: 763px) { background-image: url(../images/social/soundcloud-short.svg); }
-    background-size: auto 17px;
-
-    @media (max-width: 500px) {
-      position: relative;
-      top: -2px;
-    }
   }
 }
