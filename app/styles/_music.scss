@@ -173,9 +173,11 @@ audio {
 
   &.opened-2 {
     .album-1 {
-      @media (min-width: 891px) {
-        transform: translate3d(-225px, 0, 0);
-      }
+      @media (min-width: 891px) { transform: translate3d(-300px, 0, 0); }
+      @media (min-width: 1000px) { transform: translate3d(-350px, 0, 0); }
+      @media (min-width: 1200px) { transform: translate3d(-400px, 0, 0); }
+      @media (min-width: 1400px) { transform: translate3d(-550px, 0, 0); }
+      @media (min-width: 1600px) { transform: translate3d(-700px, 0, 0); }
     }
     .album-2 {
       opacity: 1;
@@ -193,9 +195,11 @@ audio {
 
   &.opened-1 {
     .album-2 {
-      @media (min-width: 891px) {
-        transform: translate3d(225px, 0, 0);
-      }
+      @media (min-width: 891px) { transform: translate3d(300px, 0, 0); }
+      @media (min-width: 1000px) { transform: translate3d(350px, 0, 0); }
+      @media (min-width: 1200px) { transform: translate3d(400px, 0, 0); }
+      @media (min-width: 1400px) { transform: translate3d(550px, 0, 0); }
+      @media (min-width: 1600px) { transform: translate3d(700px, 0, 0); }
     }
     .album-1 {
       opacity: 1;
