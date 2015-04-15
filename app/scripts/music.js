@@ -48,16 +48,19 @@ $(function() {
   function closeAlbum() {
     var $album = $openedAlbum;
     var is2 = $openedAlbum.hasClass('album-2');
-    $openedAlbum.find('.__front').show();
     $albums.removeClass('opened opened-1 opened-2');
     resetSongs();
     $album.siblings().removeClass('hidden-mobile');
     $openedAlbum = null;
     $progressIndicator = null;
 
-    if (is2) {
+    if (is2 && window.innerWidth < 891) {
       animateScrollingToBottom($content, 1500);
     }
+
+    setTimeout(function() {
+      $album.find('.__front').show();
+    }, 300);
   }
 
   function openAlbum($album) {
@@ -70,6 +73,10 @@ $(function() {
     setTimeout(function() {
       $openedAlbum.find('.__front').hide();
     }, 300);
+
+    setTimeout(function() {
+      player.next();
+    }, 1000);
   }
 
   function _showPlayer() {
@@ -131,6 +138,10 @@ $(function() {
     }
   });
 
+  $audio.on('no-more-songs', function() {
+    $openedAlbum.find('.close-button').click();
+  });
+
   $audio.on('song-progress', function(ev, progress) {
     if ($progressIndicator) {
       $progressIndicator.css('width', (progress * 100).toFixed(2) + '%');
@@ -159,9 +170,9 @@ $(function() {
       closeAlbum();
       lockTime = 2000;
 
-      setTimeout(function() {
-        openAlbum($album);
-      }, 1000);
+      // setTimeout(function() {
+      openAlbum($album);
+      // }, 500);
     } else {
       closeAlbum();
       hidePlayer();

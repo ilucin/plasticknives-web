@@ -5,6 +5,12 @@ $body-color-3: #EE10D7;
 $body-color-4: #FD387A;
 $body-color-5: #2DDDBF;
 
+$body-color-1-strong: lighten($body-color-1, 15%);
+$body-color-2-strong: lighten($body-color-2, 15%);
+$body-color-3-strong: lighten($body-color-3, 20%);
+$body-color-4-strong: lighten($body-color-4, 10%);
+$body-color-5-strong: lighten($body-color-5, 30%);
+
 audio {
   display: none;
 }
@@ -51,6 +57,7 @@ audio {
 
     .__controls-container {
       @media (min-width: 891px) {
+        opacity: 1;
         margin-top: 0;
       }
     }
@@ -62,8 +69,9 @@ audio {
     height: 100%;
 
     @media (min-width: 891px) {
-      margin-top: 50px;
-      transition: margin-top 500ms;
+      margin-top: 10px;
+      opacity: 0;
+      transition: all 500ms;
     }
   }
 
@@ -79,20 +87,28 @@ audio {
       border-radius: 100%;
       cursor: pointer;
       border: 1px solid #444;
-      .body-color-1 & { border: 1px solid $body-color-1; }
-      .body-color-2 & { border: 1px solid $body-color-2; }
-      .body-color-3 & { border: 1px solid $body-color-3; }
-      .body-color-4 & { border: 1px solid $body-color-4; }
-      .body-color-5 & { border: 1px solid $body-color-5; }
+      transition: border-color 250ms;
+
+      .body-color-1 & { border-color: $body-color-1; }
+      .body-color-2 & { border-color: $body-color-2; }
+      .body-color-3 & { border-color: $body-color-3; }
+      .body-color-4 & { border-color: $body-color-4; }
+      .body-color-5 & { border-color: $body-color-5; }
 
       &:hover {
+        .body-color-1 & { border-color: lighten($body-color-1-strong, 10%); }
+        .body-color-2 & { border-color: lighten($body-color-2-strong, 10%); }
+        .body-color-3 & { border-color: lighten($body-color-3-strong, 10%); }
+        .body-color-4 & { border-color: lighten($body-color-4-strong, 10%); }
+        .body-color-5 & { border-color: $body-color-5-strong; }
+
         .__control {
           background-color: #888;
-          .body-color-1 & { background-color: lighten($body-color-1, 15%); }
-          .body-color-2 & { background-color: lighten($body-color-2, 15%); }
-          .body-color-3 & { background-color: lighten($body-color-3, 15%); }
-          .body-color-4 & { background-color: lighten($body-color-4, 15%); }
-          .body-color-5 & { background-color: lighten($body-color-5, 15%); }
+          .body-color-1 & { background-color: lighten($body-color-1-strong, 10%); }
+          .body-color-2 & { background-color: lighten($body-color-2-strong, 10%); }
+          .body-color-3 & { background-color: lighten($body-color-3-strong, 10%); }
+          .body-color-4 & { background-color: lighten($body-color-4-strong, 10%); }
+          .body-color-5 & { background-color: lighten($body-color-5-strong, 10%); }
         }
       }
     }
@@ -117,20 +133,11 @@ audio {
 
     &:hover {
       background-color: lighten($bg, 15%);
-      .body-color-1 & { background-color: lighten($body-color-1, 15%); }
-      .body-color-2 & { background-color: lighten($body-color-2, 15%); }
-      .body-color-3 & { background-color: lighten($body-color-3, 15%); }
-      .body-color-4 & { background-color: lighten($body-color-4, 15%); }
-      .body-color-5 & { background-color: lighten($body-color-5, 15%); }
-    }
-
-    &:active {
-      background-color: lighten($bg, 20%);
-      .body-color-1 & { background-color: lighten($body-color-1, 20%); }
-      .body-color-2 & { background-color: lighten($body-color-2, 20%); }
-      .body-color-3 & { background-color: lighten($body-color-3, 20%); }
-      .body-color-4 & { background-color: lighten($body-color-4, 20%); }
-      .body-color-5 & { background-color: lighten($body-color-5, 20%); }
+      .body-color-1 & { background-color: lighten($body-color-1-strong, 10%); }
+      .body-color-2 & { background-color: lighten($body-color-2-strong, 10%); }
+      .body-color-3 & { background-color: lighten($body-color-3-strong, 10%); }
+      .body-color-4 & { background-color: lighten($body-color-4-strong, 10%); }
+      .body-color-5 & { background-color: lighten($body-color-5-strong, 10%); }
     }
 
     &.previous {
@@ -224,10 +231,11 @@ audio {
   float: left;
   margin: 30px 50px 0 0;
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
-  transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 500ms, height 1s, margin 1s, width 1s;
+  transition: transform 1s, opacity 500ms, height 1s, margin 1s, width 1s;
   position: relative;
   transform-style: preserve-3d;
   opacity: 0.6;
+  will-change: transform;
 
   &:hover {
     opacity: 0.8;
@@ -274,22 +282,25 @@ audio {
 
   .__title {
     font-weight: 400;
-    font-size: 21px;
+    font-size: 18px;
     line-height: 29px;
     margin-top: 20px;
     text-align: center;
-    text-decoration: none;
     position: absolute;
     bottom: 20px;
     left: 20px;
     right: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 250ms;
+    will-change: color;
 
     @media (max-width: 380px) {
       bottom: 5px;
       font-size: 18px;
     }
 
-    color: lighten($bg, 20%);
+    color: $bg;
     .body-color-1 & { color: $body-color-1; }
     .body-color-2 & { color: $body-color-2; }
     .body-color-3 & { color: $body-color-3; }
@@ -297,7 +308,11 @@ audio {
     .body-color-5 & { color: $body-color-5; }
 
     &:hover {
-      text-decoration: underline;
+      .body-color-1 & { color: $body-color-1-strong; }
+      .body-color-2 & { color: $body-color-2-strong; }
+      .body-color-3 & { color: $body-color-3-strong; }
+      .body-color-4 & { color: $body-color-4-strong; }
+      .body-color-5 & { color: $body-color-5-strong; }
     }
   }
 
@@ -375,26 +390,29 @@ audio {
 }
 
 .song {
-  opacity: 0.5;
   font-size: 16px;
   font-weight: 400;
-  color: #FFFFFF;
+  color: #999;
   line-height: 20px;
   padding: 5px 40px;
   cursor: pointer;
   @media (max-height: 650px) { line-height: 22px; }
-  transition: all 400ms;
   background: {
     repeat: no-repeat;
     position: 10px 50%;
     size: auto 16px;
+  }
+  transition: all 200ms;
+
+  .opened & {
+    transition: all 400ms;
   }
 
   @media (max-width: 380px) { padding: 3px 40px; }
   @media (max-height: 640px) { padding: 3px 40px; }
 
   &:hover {
-    opacity: 0.8;
+    color: #EEE;
   }
 
   &.playing {
