@@ -401,8 +401,10 @@ audio {
     repeat: no-repeat;
     position: 10px 50%;
     size: auto 16px;
+    clip: border-box;
   }
   transition: all 200ms;
+  position: relative;
 
   .opened & {
     transition: all 400ms;
@@ -418,16 +420,39 @@ audio {
   &.playing {
     font-weight: bold;
     padding: 10px 40px;
-    border-top: 1px solid $bg;
-    border-bottom: 1px solid $bg;
     margin: 5px 0;
     opacity: 0.8;
 
-    .body-color-1 & { border-color: $body-color-1; color: $body-color-1; }
-    .body-color-2 & { border-color: $body-color-2; color: $body-color-2; }
-    .body-color-3 & { border-color: $body-color-3; color: $body-color-3; }
-    .body-color-4 & { border-color: $body-color-4; color: $body-color-4; }
-    .body-color-5 & { border-color: $body-color-5; color: $body-color-5; }
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $body-color-1;
+      .body-color-1 & { background-color: $body-color-1; }
+      .body-color-2 & { background-color: $body-color-2; }
+      .body-color-3 & { background-color: $body-color-3; }
+      .body-color-4 & { background-color: $body-color-4; }
+      .body-color-5 & { background-color: $body-color-5; }
+
+      background-image: url(../images/line.svg);
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    .body-color-1 & { color: $body-color-1; }
+    .body-color-2 & { color: $body-color-2; }
+    .body-color-3 & { color: $body-color-3; }
+    .body-color-4 & { color: $body-color-4; }
+    .body-color-5 & { color: $body-color-5; }
 
     @media (max-width: 380px) { padding: 6px 40px;  margin: 0; }
     @media (max-height: 650px) { padding: 6px 40px;  margin: 0; }
