@@ -7,4 +7,4 @@ test/bower_components
 .divshot-cache
 assets
 app/songs
-divshot.json
+firebase.json
