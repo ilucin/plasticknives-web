@@ -1,43 +1,15 @@
 $bg: #888;
-$body-color-0: #745E9D;
-$body-color-1: #7B1B40;
-$body-color-2: #5C2C96;
-$body-color-3: #5F3489;
-$body-color-4: #2E4064;
-$body-color-5: #B16697;
+$body-color-1: #FF6F10;
+$body-color-2: #DA075E;
+$body-color-3: #EE10D7;
+$body-color-4: #FD387A;
+$body-color-5: #2DDDBF;
 
-.music-container {
-  .content {
-    height: 450px;
-    @media (max-height: 650px) { height: 380px; }
-    @media (max-height: 500px) { height: 340px; }
-    overflow: auto;
-    transition: height 500ms;
-
-    @media (min-width: 891px) {
-      overflow: hidden;
-    }
-
-    &.stretched {
-      height: 500px;
-      @media (max-height: 650px) { height: 420px; }
-      @media (max-height: 500px) { height: 380px; }
-    }
-  }
-
-  .header-middle {
-    width: 640px;
-    display: flex;
-    flex-direction: column;
-
-    .title {
-      height: 200px;
-      background: url(../images/punch-black.png);
-      background-position: 50%;
-      background-size: 100%;
-    }
-  }
-}
+$body-color-1-strong: lighten($body-color-1, 15%);
+$body-color-2-strong: lighten($body-color-2, 15%);
+$body-color-3-strong: lighten($body-color-3, 20%);
+$body-color-4-strong: lighten($body-color-4, 10%);
+$body-color-5-strong: lighten($body-color-5, 30%);
 
 audio {
   display: none;
@@ -75,14 +47,32 @@ audio {
     margin-bottom: 20px;
   }
 
+  @media (min-width: 891px) {
+    margin: 0;
+    height: 50px;
+  }
+
   &.shown {
     height: 50px;
+
+    .__controls-container {
+      @media (min-width: 891px) {
+        opacity: 1;
+        margin-top: 0;
+      }
+    }
   }
 
   .__controls-container {
     width: 200px;
     margin: auto;
     height: 100%;
+
+    @media (min-width: 891px) {
+      margin-top: 10px;
+      opacity: 0;
+      transition: all 500ms;
+    }
   }
 
   .__main-control {
@@ -97,22 +87,28 @@ audio {
       border-radius: 100%;
       cursor: pointer;
       border: 1px solid #444;
-      .body-color-0 & { border: 1px solid $body-color-0; }
-      .body-color-1 & { border: 1px solid $body-color-1; }
-      .body-color-2 & { border: 1px solid $body-color-2; }
-      .body-color-3 & { border: 1px solid $body-color-3; }
-      .body-color-4 & { border: 1px solid $body-color-4; }
-      .body-color-5 & { border: 1px solid $body-color-5; }
+      transition: border-color 250ms;
+
+      .body-color-1 & { border-color: $body-color-1; }
+      .body-color-2 & { border-color: $body-color-2; }
+      .body-color-3 & { border-color: $body-color-3; }
+      .body-color-4 & { border-color: $body-color-4; }
+      .body-color-5 & { border-color: $body-color-5; }
 
       &:hover {
+        .body-color-1 & { border-color: lighten($body-color-1-strong, 10%); }
+        .body-color-2 & { border-color: lighten($body-color-2-strong, 10%); }
+        .body-color-3 & { border-color: lighten($body-color-3-strong, 10%); }
+        .body-color-4 & { border-color: lighten($body-color-4-strong, 10%); }
+        .body-color-5 & { border-color: $body-color-5-strong; }
+
         .__control {
           background-color: #888;
-          .body-color-0 & { background-color: lighten($body-color-0, 15%); }
-          .body-color-1 & { background-color: lighten($body-color-1, 15%); }
-          .body-color-2 & { background-color: lighten($body-color-2, 15%); }
-          .body-color-3 & { background-color: lighten($body-color-3, 15%); }
-          .body-color-4 & { background-color: lighten($body-color-4, 15%); }
-          .body-color-5 & { background-color: lighten($body-color-5, 15%); }
+          .body-color-1 & { background-color: lighten($body-color-1-strong, 10%); }
+          .body-color-2 & { background-color: lighten($body-color-2-strong, 10%); }
+          .body-color-3 & { background-color: lighten($body-color-3-strong, 10%); }
+          .body-color-4 & { background-color: lighten($body-color-4-strong, 10%); }
+          .body-color-5 & { background-color: lighten($body-color-5-strong, 10%); }
         }
       }
     }
@@ -125,11 +121,10 @@ audio {
     float: left;
     background-repeat: no-repeat;
     background-size: 100%;
-    background-color: $bg;
     cursor: pointer;
     transition: background-color 200ms;
 
-    .body-color-0 & { background-color: $body-color-0; }
+    background-color: $bg;
     .body-color-1 & { background-color: $body-color-1; }
     .body-color-2 & { background-color: $body-color-2; }
     .body-color-3 & { background-color: $body-color-3; }
@@ -138,22 +133,11 @@ audio {
 
     &:hover {
       background-color: lighten($bg, 15%);
-      .body-color-0 & { background-color: lighten($body-color-0, 15%); }
-      .body-color-1 & { background-color: lighten($body-color-1, 15%); }
-      .body-color-2 & { background-color: lighten($body-color-2, 15%); }
-      .body-color-3 & { background-color: lighten($body-color-3, 15%); }
-      .body-color-4 & { background-color: lighten($body-color-4, 15%); }
-      .body-color-5 & { background-color: lighten($body-color-5, 15%); }
-    }
-
-    &:active {
-      background-color: lighten($bg, 20%);
-      .body-color-0 & { background-color: lighten($body-color-0, 20%); }
-      .body-color-1 & { background-color: lighten($body-color-1, 20%); }
-      .body-color-2 & { background-color: lighten($body-color-2, 20%); }
-      .body-color-3 & { background-color: lighten($body-color-3, 20%); }
-      .body-color-4 & { background-color: lighten($body-color-4, 20%); }
-      .body-color-5 & { background-color: lighten($body-color-5, 20%); }
+      .body-color-1 & { background-color: lighten($body-color-1-strong, 10%); }
+      .body-color-2 & { background-color: lighten($body-color-2-strong, 10%); }
+      .body-color-3 & { background-color: lighten($body-color-3-strong, 10%); }
+      .body-color-4 & { background-color: lighten($body-color-4-strong, 10%); }
+      .body-color-5 & { background-color: lighten($body-color-5-strong, 10%); }
     }
 
     &.previous {
@@ -196,9 +180,11 @@ audio {
 
   &.opened-2 {
     .album-1 {
-      @media (min-width: 891px) {
-        transform: translate3d(-225px, 0, 0);
-      }
+      @media (min-width: 891px) { transform: translate3d(-300px, 0, 0); }
+      @media (min-width: 1000px) { transform: translate3d(-350px, 0, 0); }
+      @media (min-width: 1200px) { transform: translate3d(-400px, 0, 0); }
+      @media (min-width: 1400px) { transform: translate3d(-550px, 0, 0); }
+      @media (min-width: 1600px) { transform: translate3d(-700px, 0, 0); }
     }
     .album-2 {
       opacity: 1;
@@ -216,9 +202,11 @@ audio {
 
   &.opened-1 {
     .album-2 {
-      @media (min-width: 891px) {
-        transform: translate3d(225px, 0, 0);
-      }
+      @media (min-width: 891px) { transform: translate3d(300px, 0, 0); }
+      @media (min-width: 1000px) { transform: translate3d(350px, 0, 0); }
+      @media (min-width: 1200px) { transform: translate3d(400px, 0, 0); }
+      @media (min-width: 1400px) { transform: translate3d(550px, 0, 0); }
+      @media (min-width: 1600px) { transform: translate3d(700px, 0, 0); }
     }
     .album-1 {
       opacity: 1;
@@ -247,10 +235,7 @@ audio {
   position: relative;
   transform-style: preserve-3d;
   opacity: 0.6;
-
-  &:active {
-    transform: scale(0.9);
-  }
+  will-change: transform;
 
   &:hover {
     opacity: 0.8;
@@ -273,6 +258,10 @@ audio {
     height: 240px;
   }
 
+  @media (min-width: 891px) {
+    margin-top: 20px;
+  }
+
   &.hidden-mobile {
     @media (max-width: 890px) {
       height: 0 !important;
@@ -293,31 +282,37 @@ audio {
 
   .__title {
     font-weight: 400;
-    font-size: 21px;
-    color: lighten($bg, 20%);
+    font-size: 18px;
     line-height: 29px;
     margin-top: 20px;
     text-align: center;
-    text-decoration: none;
     position: absolute;
     bottom: 20px;
     left: 20px;
     right: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 250ms;
+    will-change: color;
+    color: $bg;
 
     @media (max-width: 380px) {
       bottom: 5px;
       font-size: 18px;
     }
 
-    .body-color-0 & { color: lighten($body-color-0, 20%); }
-    .body-color-1 & { color: lighten($body-color-1, 20%); }
-    .body-color-2 & { color: lighten($body-color-2, 20%); }
-    .body-color-3 & { color: lighten($body-color-3, 20%); }
-    .body-color-4 & { color: lighten($body-color-4, 20%); }
-    .body-color-5 & { color: lighten($body-color-5, 20%); }
+    .body-color-1 & { color: $body-color-1; }
+    .body-color-2 & { color: $body-color-2; }
+    .body-color-3 & { color: $body-color-3; }
+    .body-color-4 & { color: $body-color-4; }
+    .body-color-5 & { color: $body-color-5; }
 
     &:hover {
-      text-decoration: underline;
+      .body-color-1 & { color: $body-color-1-strong; }
+      .body-color-2 & { color: $body-color-2-strong; }
+      .body-color-3 & { color: $body-color-3-strong; }
+      .body-color-4 & { color: $body-color-4-strong; }
+      .body-color-5 & { color: $body-color-5-strong; }
     }
   }
 
@@ -341,13 +336,12 @@ audio {
 
     .__progress-indicator {
       width: 0;
-      background-color: $bg;
       position: absolute;
       right: 0;
       bottom: 0;
       height: 2px;
+      background-color: $bg;
 
-      .body-color-0 & { background-color: $body-color-0; }
       .body-color-1 & { background-color: $body-color-1; }
       .body-color-2 & { background-color: $body-color-2; }
       .body-color-3 & { background-color: $body-color-3; }
@@ -396,103 +390,71 @@ audio {
 }
 
 .song {
-  opacity: 0.5;
   font-size: 16px;
-  font-weight: 200;
-  color: #FFFFFF;
+  font-weight: 400;
+  color: #999;
   line-height: 20px;
   padding: 5px 40px;
   cursor: pointer;
   @media (max-height: 650px) { line-height: 22px; }
-  transition: all 400ms;
   background: {
     repeat: no-repeat;
     position: 10px 50%;
     size: auto 16px;
+    clip: border-box;
+  }
+  transition: all 200ms;
+  position: relative;
+
+  .opened & {
+    transition: all 400ms;
   }
 
   @media (max-width: 380px) { padding: 3px 40px; }
   @media (max-height: 640px) { padding: 3px 40px; }
 
   &:hover {
-    opacity: 0.8;
+    color: #EEE;
   }
 
   &.playing {
     font-weight: bold;
     padding: 10px 40px;
-    border-top: 1px solid $bg;
-    border-bottom: 1px solid $bg;
     margin: 5px 0;
     opacity: 0.8;
 
-    .body-color-0 & { border-color: $body-color-0; }
-    .body-color-1 & { border-color: $body-color-1; }
-    .body-color-2 & { border-color: $body-color-2; }
-    .body-color-3 & { border-color: $body-color-3; }
-    .body-color-4 & { border-color: $body-color-4; }
-    .body-color-5 & { border-color: $body-color-5; }
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $body-color-1;
+      .body-color-1 & { background-color: $body-color-1; }
+      .body-color-2 & { background-color: $body-color-2; }
+      .body-color-3 & { background-color: $body-color-3; }
+      .body-color-4 & { background-color: $body-color-4; }
+      .body-color-5 & { background-color: $body-color-5; }
+
+      background-image: url(../images/line.svg);
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    .body-color-1 & { color: $body-color-1; }
+    .body-color-2 & { color: $body-color-2; }
+    .body-color-3 & { color: $body-color-3; }
+    .body-color-4 & { color: $body-color-4; }
+    .body-color-5 & { color: $body-color-5; }
 
     @media (max-width: 380px) { padding: 6px 40px;  margin: 0; }
     @media (max-height: 650px) { padding: 6px 40px;  margin: 0; }
-  }
-}
-
-.social {
-  margin: auto;
-  text-align: center;
-
-  a {
-    display: inline-block;
-    text-indent: -9999px;
-    overflow: hidden;
-    width: 150px;
-    height: 30px;
-    background: {
-      repeat: no-repeat;
-      position: 50%;
-      size: auto 20px;
-    }
-
-    @media (max-width: 763px) {
-      width: 80px;
-    }
-
-    @media (max-width: 500px) {
-      height: 24px;
-      width: 50px;
-    }
-
-    @media (max-width: 380px) { height: 22px; }
-    @media (max-width: 350px) { height: 18px; }
-  }
-
-  .__bandcamp {
-    background-image: url(../images/social/bandcamp.png);
-    @media (max-width: 763px) { background-image: url(../images/social/bandcamp-short.png); }
-    background-size: auto 18px;
-  }
-  .__facebook {
-    background-image: url(../images/social/facebook-letters.png);
-    @media (max-width: 763px) { background-image: url(../images/social/facebook-short.png); }
-    background-size: auto 17px;
-  }
-  .__youtube {
-    background-image: url(../images/social/youtube.png);
-    background-size: auto 17px;
-  }
-  .__mail {
-    background-image: url(../images/social/mail.png);
-    background-size: auto 20px;
-  }
-  .__soundcloud {
-    background-image: url(../images/social/soundcloud.png);
-    @media (max-width: 763px) { background-image: url(../images/social/soundcloud-short.png); }
-    background-size: auto 17px;
-
-    @media (max-width: 500px) {
-      position: relative;
-      top: -2px;
-    }
   }
 }

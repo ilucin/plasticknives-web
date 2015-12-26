@@ -61,11 +61,9 @@ $(function() {
   }
 
   function playSong(index) {
-    if (songs[index] && !(index === currSongIndex && isPlaying)) {
-      if (currSongIndex !== index) {
-        currSongIndex = index;
-        audioEl.src = songs[currSongIndex].src;
-      }
+    if (songs[index]) {
+      currSongIndex = index;
+      audioEl.src = songs[currSongIndex].src;
       play();
     }
   }
@@ -75,6 +73,8 @@ $(function() {
       stop();
       currSongIndex++;
       playCurrentSong();
+    } else {
+      $audioEl.trigger('no-more-songs');
     }
   }
 
