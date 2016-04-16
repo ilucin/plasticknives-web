@@ -90,17 +90,20 @@ body {
 .social {
   margin: auto;
   text-align: center;
+  display: flex;
+  max-width: 850px;
 
   a {
     display: inline-block;
     text-indent: -9999px;
     overflow: hidden;
-    width: 150px;
+    flex: 1;
+    min-width: 109px;
     height: 30px;
     background: {
-      repeat: no-repeat;
       position: 50%;
-      size: auto 20px;
+      repeat: no-repeat;
+      size: contain;
     }
     opacity: 0.4;
     transition: opacity 200ms;
@@ -109,8 +112,8 @@ body {
       opacity: 0.7;
     }
 
-    @media (max-width: 763px) {
-      width: 80px;
+    @media (max-width: 768px) {
+      min-width: 0;
     }
 
     @media (max-width: 500px) {
@@ -119,34 +122,44 @@ body {
     }
 
     @media (max-width: 380px) { height: 22px; }
-    @media (max-width: 350px) { height: 18px; }
+    // @media (max-width: 350px) { height: 18px; }
   }
 
   .__bandcamp {
-    background-image: url(../images/social/bandcamp.svg);
-    @media (max-width: 763px) { background-image: url(../images/social/bandcamp-short.svg); }
+    background-image: url('../images/social/bandcamp.svg');
+    @media (max-width: 768px) { background-image: url('../images/social/bandcamp-short.svg'); }
     background-size: auto 18px;
   }
 
   .__facebook {
-    background-image: url(../images/social/facebook-letters.svg);
-    @media (max-width: 763px) { background-image: url(../images/social/facebook-short.svg); }
+    background-image: url('../images/social/facebook-short.svg');
+    // @media (max-width: 768px) { background-image: url('../images/social/facebook-short.svg'); }
     background-size: auto 17px;
   }
 
   .__youtube {
-    background-image: url(../images/social/youtube.svg);
+    background-image: url('../images/social/youtube.svg');
     background-size: auto 20px;
   }
 
   .__mail {
-    background-image: url(../images/social/mail.svg);
+    background-image: url('../images/social/mail.svg');
     background-size: auto 20px;
   }
 
+  .__twitter {
+    background-image: url('../images/social/twitter.svg');
+    background-size: auto 22px;
+  }
+
+  .__instagram {
+    background-image: url('../images/social/instagram.svg');
+    @media (max-width: 360px) { display: none }
+  }
+
   .__soundcloud {
-    background-image: url(../images/social/soundcloud.svg);
-    @media (max-width: 763px) { background-image: url(../images/social/soundcloud-short.svg); }
+    background-image: url('../images/social/soundcloud-short.svg');
+    // @media (max-width: 768px) { background-image: url('../images/social/soundcloud-short.svg'); }
     background-size: auto 17px;
 
     @media (max-width: 500px) {
