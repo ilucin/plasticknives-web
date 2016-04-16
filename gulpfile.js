@@ -3,41 +3,59 @@
 // generated on 2015-01-04 using generator-gulp-webapp 0.2.0
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var browserSync = require('browser-sync');
+
+const reload = browserSync.reload;
 
 gulp.task('styles', function() {
-  return gulp.src('app/styles/main.scss')
-    .pipe($.plumber())
-    .pipe($.rubySass({
-      style: 'expanded',
-      precision: 10
+  return gulp.src('app/styles/*.scss')
+    // .pipe($.sourcemaps.init())
+    .pipe($.sass.sync({
+      outputStyle: 'expanded',
+      precision: 10,
+      includePaths: ['.']
+    }).on('error', $.sass.logError))
+    .pipe($.autoprefixer({
+      browsers: ['last 1 version']
     }))
-    .pipe($.autoprefixer())
+    // .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'));
+  // .pipe(reload({stream: true}));
 });
 
-gulp.task('jshint', function() {
+gulp.task('lint', function() {
   return gulp.src('app/scripts/**/*.js')
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.jshint.reporter('fail'));
+    .pipe(reload({
+      stream: true,
+      once: true
+    }))
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.if(!browserSync.active, $.eslint.failAfterError()));
 });
 
 gulp.task('html', ['styles'], function() {
-  var assets = $.useref.assets({
-    searchPath: '{.tmp,app}'
-  });
-
   return gulp.src('app/*.html')
-    .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.csso()))
-    .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.if('*.html', $.minifyHtml({
-      conditionals: true,
-      loose: true
-    })))
-    .pipe(gulp.dest('dist'));
+      .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
+      .pipe($.if('*.js', $.uglify()))
+      .pipe($.if('*.css', $.cssnano()))
+      .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
+      .pipe(gulp.dest('dist'));
+
+  // var assets = $.useref.assets({
+  //   searchPath: '{.tmp,app}'
+  // });
+  // return gulp.src('app/*.html')
+  //   .pipe(assets)
+  //   .pipe($.if('*.js', $.uglify()))
+  //   .pipe($.if('*.css', $.csso()))
+  //   .pipe(assets.restore())
+  //   .pipe($.useref())
+  //   .pipe($.if('*.html', $.minifyHtml({
+  //     conditionals: true,
+  //     loose: true
+  //   })))
+  //   .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', function() {
@@ -126,7 +144,7 @@ gulp.task('watch', ['connect'], function() {
   gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'songs', 'extras', 'woffcss'], function() {
+gulp.task('build', ['lint', 'html', 'images', 'fonts', 'songs', 'extras', 'woffcss'], function() {
   return gulp.src('dist/**/*').pipe($.size({
     title: 'build',
     gzip: true
